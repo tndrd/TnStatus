@@ -34,6 +34,7 @@ TnStatus CreateStatus(TnStatusCode code);
 #endif
 
 #define TNSTATUS(code) TNSTATUS_C(code, NULL)
+#define TN_OK TNSTATUS(TN_SUCCESS)
 
 const char* TnStatusCodeGetDescription(TnStatusCode code);
 void TnStatusPrintDescription(TnStatus status);
