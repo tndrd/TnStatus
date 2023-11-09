@@ -6,5 +6,6 @@ TN_STATUS_DECLARE(TN_UNDERFLOW, Underflow)
 TN_STATUS_DECLARE(TN_SYNTAX_ERROR, Syntax error)
 TN_STATUS_DECLARE(TN_BAD_ALLOC, Failed to allocate memory)
 TN_STATUS_DECLARE(TN_UNINITIALIZED, Uninitialized data)
+TN_STATUS_DECLARE(TN_FSM_WRONG_STATE, Inappropriate call for current FSM state)
 
 TN_STATUS_DECLARE(TN_ERRNO, strerror(errno))
