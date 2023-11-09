@@ -26,7 +26,7 @@ void TnStatusPrintDescription(TnStatus status) {
   #ifdef TN_STATUS_EXTENDED
   fprintf(stderr, "%s, %s, %zu: ", status.File, status.Function, status.Line);
   if (status.Comment)
-    fprintf(file, "%s: ", status.Comment);
+    fprintf(stderr, "%s: ", status.Comment);
   #endif
 
   fprintf(stderr, "%s", TnStatusCodeGetDescription(status.Code));
