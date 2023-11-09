@@ -37,6 +37,7 @@ TnStatus CreateStatus(TnStatusCode code);
 
 const char* TnStatusCodeGetDescription(TnStatusCode code);
 void TnStatusPrintDescription(TnStatus status);
+int TnStatusOk(TnStatus status);
 
 #ifdef __cplusplus
 }

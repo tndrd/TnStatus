@@ -31,3 +31,7 @@ void TnStatusPrintDescription(TnStatus status) {
 
   fprintf(stderr, "%s", TnStatusCodeGetDescription(status.Code));
 }
+
+int TnStatusOk(TnStatus status) {
+  return status.Code == TN_SUCCESS;
+}
