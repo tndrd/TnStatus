@@ -18,6 +18,7 @@ const char* TnStatusCodeGetDescription(TnStatusCode code) {
     #include "TnStatusCode.decl"
     #undef TN_STATUS_DECLARE
 
+    case TN_ERRNO: return strerror(errno);
     default: return "Undefined status code";
   }
 }

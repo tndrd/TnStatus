@@ -12,6 +12,8 @@ typedef enum {
   #define TN_STATUS_DECLARE(code, description) code,
   #include "TnStatusCode.decl"
   #undef TN_STATUS_DECLARE
+
+  TN_ERRNO
 } TnStatusCode;
 
 typedef struct {
