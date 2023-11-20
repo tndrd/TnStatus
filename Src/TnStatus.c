@@ -36,3 +36,12 @@ void TnStatusPrintDescription(TnStatus status) {
 int TnStatusOk(TnStatus status) {
   return status.Code == TN_SUCCESS;
 }
+
+void TnStatusAssert(TnStatus status) {
+  if (TnStatusOk(status)) return;
+
+  fprintf(stderr, "TnStatus assertion failed: ");
+  TnStatusPrintDescription(status);
+  fprintf(stderr, "\n");
+  exit(1);
+}
