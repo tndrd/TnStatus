@@ -1,8 +1,9 @@
 #include "TnStatus.h"
 
-#ifdef TN_STATUS_EXTENDED
-TnStatus CreateStatus(TnStatusCode code, size_t line, const char* function, const char* file, const char* comment) {
-  TnStatus status = {code, line, function, file, comment};
+#ifndef TN_STATUS_LIGHT
+TnStatus CreateStatus(TnStatusCode code, size_t line, const char* file) {
+  assert(file);
+  TnStatus status = {code, line, file};
   return status;
 } 
 #else
@@ -24,10 +25,8 @@ const char* TnStatusCodeGetDescription(TnStatusCode code) {
 }
 
 void TnStatusPrintDescription(TnStatus status) {
-  #ifdef TN_STATUS_EXTENDED
-  fprintf(stderr, "%s, %s, %zu: ", status.File, status.Function, status.Line);
-  if (status.Comment)
-    fprintf(stderr, "%s: ", status.Comment);
+  #ifndef TN_STATUS_LIGHT
+  fprintf(stderr, "File %s, line %zu: ", status.File, status.Line);
   #endif
 
   fprintf(stderr, "%s", TnStatusCodeGetDescription(status.Code));

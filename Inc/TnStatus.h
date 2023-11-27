@@ -3,6 +3,7 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
+#include <assert.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -19,23 +20,20 @@ typedef enum {
 typedef struct {
   TnStatusCode Code;
   
-  #ifdef TN_STATUS_EXTENDED
+  #ifndef TN_STATUS_LIGHT
   size_t Line;
-  const char* Function;
   const char* File;
-  const char* Comment;
   #endif
 } TnStatus;
 
-#ifdef TN_STATUS_EXTENDED
-TnStatus CreateStatus(TnStatusCode code, size_t line, const char* function, const char* file, const char* comment);
-#define TNSTATUS_C(code, comment) CreateStatus(code, __LINE__, __FUNCTION__, __FILE__, comment);
+#ifndef TN_STATUS_LIGHT
+TnStatus CreateStatus(TnStatusCode code, size_t line, const char* file);
+#define TNSTATUS(code) CreateStatus(code, __LINE__,  __FILE__);
 #else
 TnStatus CreateStatus(TnStatusCode code);
-#define TNSTATUS_C(code, comment) CreateStatus(code);
+#define TNSTATUS(code) CreateStatus(code);
 #endif
 
-#define TNSTATUS(code) TNSTATUS_C(code, NULL)
 #define TN_OK TNSTATUS(TN_SUCCESS)
 
 const char* TnStatusCodeGetDescription(TnStatusCode code);
